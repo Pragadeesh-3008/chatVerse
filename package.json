@@ -9,7 +9,8 @@
     "dev-all": "npm run dev & npm run server",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "prisma generate --schema=api/prisma/schema.prisma"
   },
   "dependencies": {
     "@clerk/backend": "^2.31.0",

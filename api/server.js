@@ -13,12 +13,8 @@ const server = http.createServer(app)
 const io = new Server(server, {
     cors: {
         origin: function (origin, callback) {
-            // Allow any localhost origin during development
-            if (!origin || /^http:\/\/localhost(:\d+)?$/.test(origin)) {
-                callback(null, true)
-            } else {
-                callback(new Error('Not allowed by CORS'))
-            }
+            // Allow all origins for the chat app
+            callback(null, true)
         },
         methods: ['GET', 'POST'],
     },
