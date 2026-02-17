@@ -22,10 +22,15 @@ const io = new Server(server, {
 
 app.use(cors())
 
+// Use a router to handle the /api prefix correctly
+const router = express.Router()
+
 // Health check endpoint
-app.get('/health', (_req, res) => {
-    res.json({ status: 'ok', uptime: process.uptime() })
+router.get('/health', (_req, res) => {
+    res.json({ status: 'ok', uptime: process.uptime(), env: process.env.NODE_ENV })
 })
+
+app.use('/api', router)
 
 io.on('connection', (socket) => {
     console.log(`[+] New connection: ${socket.id}`)
