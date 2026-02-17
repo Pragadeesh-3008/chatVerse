@@ -133,6 +133,12 @@ async function handleUserLeave(socket) {
     }
 }
 
-server.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`)
-})
+// Export the app for Vercel
+export default app
+
+// Only listen locally
+if (process.env.NODE_ENV !== 'production') {
+    server.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`)
+    })
+}
